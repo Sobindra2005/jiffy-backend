@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const ResturantSchema = new mongoose.Schema({
+const RestaurantSchema = new mongoose.Schema({ // Fixed spelling from 'Resturant' to 'Restaurant'
   name: {
     type: String,
     required: true,
@@ -9,7 +9,6 @@ const ResturantSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
   address: {
     type: String,
     required: true,
@@ -19,21 +18,27 @@ const ResturantSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
-  ratinngCount: {
+  ratingCount: { // Fixed spelling from 'ratinngCount'
     type: Number,
     required: true,
     default: 0,
   },
-  cusine: {
+  cuisine: { // Fixed spelling from 'cusine'
     type: [String],
+    required: true,
+    default: []
   },
   image: {
     type: String,
     required: true,
   },
- items: [{
+  items: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Item",
- }]
- 
+  }]
+}, {
+  timestamps: true
 });
+
+const Restaurant = mongoose.model("Restaurant", RestaurantSchema);
+export default Restaurant;

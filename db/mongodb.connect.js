@@ -1,14 +1,14 @@
-const mongoose=require('mongoose')
+import mongoose from 'mongoose'
 
-async function connectMongoDb(url){
-   await mongoose.connect(`${url}`).then(()=>{
+async function connectMongoDb(){
+   await mongoose.connect(process.env.MONGODB_URI).then(()=>{
     console.log('mongodb connected successfully!!')
    })
    .catch((err)=>{
-    console.log('error occur while connecting mongodb !!',url,err)
+    console.log('error occur while connecting mongodb !!',err)
    })
    
    
 }
 
-module.exports={connectMongoDb}
+export {connectMongoDb}

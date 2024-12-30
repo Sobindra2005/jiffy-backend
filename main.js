@@ -1,47 +1,44 @@
-import express from 'express';
-import { connectMongoDb } from './db/mongoDb';
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+// import swaggerDocs from "./swaggerConfig";
+import { connectMongoDb } from "./db/mongodb.connect.js";
 
+import userRouter from "./routes/user.routes.js";
+import foodRouter from "./routes/food.routes.js";
+import resturantRouter from "./routes/resturant.routes.js";
+import testRouter from "./routes/test.routes.js";
 
-const swaggerDocs = require('./swaggerConfig');
-
-// const admin = require('firebase-admin');
-// const serviceAccount = require('./jiffy-bfbea-firebase-adminsdk-anenx-38f7d48ec4.json');
-
+dotenv.config({ path: "./.env" });
 const app = express();
-const port = 3000;
-const cors = require('cors');
+const port = process.env.PORT || 3000;
 
-app.use(express.json({}));
+// Middleware
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+}));
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-require('dotenv').config();
-const url = process.env.MongoUrl; 
 
-connectMongoDb(url).then(()=>{
-    console.log('Connected to MongoDB');
-}).catch((err)=>{
-    console.log('Error while connecting to MongoDB',err);
-    process.exit(1);
-});
-// 
-// app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+// MongoDB Connection
+connectMongoDb()
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => {
+    console.error("Error connecting to MongoDB", err);
+  });
 
-// app.use(cors({
-//     origin: 'http://localhost:5173',
-//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-//     credentials: true,
-// }));
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
+// Routes
+app.use("/api/v1/test", testRouter);
+app.use("/api/v1/user", userRouter);
+app.use("/api/v1/food", foodRouter);
+app.use("/api/v1/resturant", resturantRouter);
 
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-// });
-
-//Routes
-import  userRouter  from './routes/user.route';
-
- app.use('/api/v1/user',userRouter ); 
-
+// Start Server
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
