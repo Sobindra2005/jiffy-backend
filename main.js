@@ -1,7 +1,7 @@
-const express = require('express');
-const {connectMongoDb} = require('./db/mongodb.connect');
-const Routes= require('./routes/routes.js')
-const swaggerUi = require('swagger-ui-express');
+import express from 'express';
+import { connectMongoDb } from './db/mongoDb';
+
+
 const swaggerDocs = require('./swaggerConfig');
 
 // const admin = require('firebase-admin');
@@ -16,22 +16,31 @@ app.use(express.urlencoded({ extended: false }));
 require('dotenv').config();
 const url = process.env.MongoUrl; 
 
-connectMongoDb(url)
+connectMongoDb(url).then(()=>{
+    console.log('Connected to MongoDB');
+}).catch((err)=>{
+    console.log('Error while connecting to MongoDB',err);
+    process.exit(1);
+});
+// 
+// app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-app.use(cors({
-    origin: 'http://localhost:5173',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-}));
+// app.use(cors({
+//     origin: 'http://localhost:5173',
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+//     credentials: true,
+// }));
 
 
 // admin.initializeApp({
 //   credential: admin.credential.cert(serviceAccount),
 // });
 
- app.use('/',Routes); 
+//Routes
+import  userRouter  from './routes/user.route';
+
+ app.use('/api/v1/user',userRouter ); 
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

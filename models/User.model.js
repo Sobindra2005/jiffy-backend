@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: false
+        match: /^\S+@\S+\.\S+$/,
     },
     phoneNumber: {
         type: String,
@@ -17,11 +17,19 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    isPhoneVerified:{
+    isPhoneVerified: {
         type: Boolean,
         default: false
     },
-},{
+    preferences: {
+        type: [String],
+        default: []
+    },
+    achievement:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Achievement'
+    }
+}, {
     timestamps: true
 });
 
