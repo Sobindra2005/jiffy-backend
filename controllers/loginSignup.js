@@ -14,16 +14,16 @@ const login = (req, res) => {
 
 const Signup = async (req, res) => {
 
-    const { firstName, lastName, phoneNumber, password } = req.body;
+    const { fullName , phoneNumber, password } = req.body;
 
-    if (!firstName || !lastName || !phoneNumber || !password) {
+    if (!fullName  || !phoneNumber || !password) {
         return res.status(400).json({ message: 'All fields are required' });
     }
     try {
         // const phone = fetch("https://phonevalidation.abstractapi.com/v1?api_key= e7d7b8e0a9ee47aaa35171a9dec93955&phone=+9779749712851");
         // console.log(phone)
         await User.create({
-            firstName, lastName, phoneNumber, password
+            fullName, phoneNumber, password
         })
         res.status(201).json({ message: 'User created successfully' });
     } catch (error) {

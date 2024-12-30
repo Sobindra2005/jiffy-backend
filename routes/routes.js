@@ -16,9 +16,7 @@ const router = express.Router();
  *           schema:
  *             type: object
  *             properties:
- *               firstName:
- *                 type: string
- *               lastName:
+ *               fullName:
  *                 type: string
  *               phoneNumber:
  *                 type: string
