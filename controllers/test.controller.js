@@ -24,7 +24,7 @@ export const createResturaunt = asyncHandler(async (req, res) => {
 
 export const createItem = asyncHandler(async (req, res) => {
   const restaurantId = "677227483eae41034f3f6eb1";
-
+consolw.log("test")
   const item = await Item.create(  {
     name: "The Gardens Special Hot Chocolate",
     description: "Rich and creamy hot chocolate, perfect for warming up on chilly days.",
