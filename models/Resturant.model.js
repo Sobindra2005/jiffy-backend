@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const RestaurantSchema = new mongoose.Schema({ // Fixed spelling from 'Resturant' to 'Restaurant'
+const RestaurantSchema = new mongoose.Schema({ 
   name: {
     type: String,
     required: true,
@@ -18,12 +18,12 @@ const RestaurantSchema = new mongoose.Schema({ // Fixed spelling from 'Resturant
     required: true,
     default: 0,
   },
-  ratingCount: { // Fixed spelling from 'ratinngCount'
+  ratingCount: { 
     type: Number,
     required: true,
     default: 0,
   },
-  cuisine: { // Fixed spelling from 'cusine'
+  cuisine: { 
     type: [String],
     required: true,
     default: []
