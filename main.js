@@ -22,8 +22,8 @@ connectMongoDb(url).then(()=>{
     console.log('Error while connecting to MongoDB',err);
     process.exit(1);
 });
-
-app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+// 
+// app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // app.use(cors({
 //     origin: 'http://localhost:5173',
@@ -38,9 +38,9 @@ app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // });
 
 //Routes
+import  userRouter  from './routes/user.route';
 
-
- app.use('/api/v1/user',); 
+ app.use('/api/v1/user',userRouter ); 
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

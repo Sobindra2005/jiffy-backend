@@ -3,7 +3,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
-const register = asyncHandler(async (req, res) => {
+export const register = asyncHandler(async (req, res) => {
   const { email, password, phone, fullName } = req.body;
 
   if (!password || !phone || !fullName) {
@@ -22,7 +22,7 @@ const register = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, user, "User created successfully"));
 });
 
-const login = asyncHandler(async (req, res) => {
+export const login = asyncHandler(async (req, res) => {
   const { phone, password } = req.body;
 
   if (!phone || !password) {
@@ -46,7 +46,7 @@ const login = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, user, "User logged in successfully"));
 });
 
-const preferences = asyncHandler(async (req, res) => {
+export const preferences = asyncHandler(async (req, res) => {
   const { userId } = req.params;
   const { preferences } = req.body;
 
