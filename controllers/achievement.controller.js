@@ -9,11 +9,11 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 
 const dummyAchievements = [
   {
-    title: "Momo Lover Badge",
+    title: "Momo Marathon",
     description:
-      "Try momos from 5 different restaurants. Bonus: Include unique varieties like jhol momos or kothey momos.",
+      "Try 5 different momo varieties from different restaurants.",
     coinReward: 100,
-    icon: "momo_icon.png",
+    icon: "https://www.pinterest.com/c0b33db6-e71a-48c3-8adb-ff6a04978302",
     criteria: {
       metric: "restaurants_visited",
       value: 5,
@@ -25,9 +25,9 @@ const dummyAchievements = [
   {
     title: "Dal-Bhat Power",
     description:
-      "Order or cook a classic dal-bhat-tarkari meal for 7 consecutive days.",
+      "Order  a classic dal-bhat-tarkari meal for 7 consecutive days.",
     coinReward: 150,
-    icon: "dal_bhat_icon.png",
+    icon: "https://i.pinimg.com/736x/47/47/a8/4747a835710db56e2d60d778dc185c32.jpg",
     criteria: {
       metric: "consecutive_days",
       value: 7,
@@ -41,7 +41,7 @@ const dummyAchievements = [
     description:
       "Explore Newari cuisine by trying dishes like yomari, bara, or chatamari from specific restaurants.",
     coinReward: 200,
-    icon: "newari_icon.png",
+    icon: "https://i.pinimg.com/736x/93/a5/08/93a50898d36565669254619cb7c75858.jpg",
     criteria: {
       metric: "newari_dishes_tried",
       value: 3,
@@ -55,7 +55,7 @@ const dummyAchievements = [
     description:
       "Try street foods like pani puri, chatpate, or laphing from three popular street vendors.",
     coinReward: 120,
-    icon: "street_food_icon.png",
+    icon: "https://i.pinimg.com/736x/bc/f1/c9/bcf1c91265583eba1e66562e2fa5f8f6.jpg",
     criteria: {
       metric: "street_foods_tried",
       value: 3,

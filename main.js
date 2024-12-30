@@ -10,18 +10,18 @@ import resturantRouter from "./routes/resturant.routes.js";
 import achievementRouter from "./routes/achievement.routes.js";
 import testRouter from "./routes/test.routes.js";
 
-
 dotenv.config({ path: "./.env" });
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors({
-  origin: 'http://localhost:5173',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -39,7 +39,6 @@ app.use("/api/v1/test", testRouter);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/food", foodRouter);
 app.use("/api/v1/resturant", resturantRouter);
-
 
 app.use("/api/v1/achievement", achievementRouter);
 // Start Server
