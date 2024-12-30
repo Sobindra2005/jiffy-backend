@@ -1,12 +1,12 @@
 import { Router } from "express";
-import {register, login, preferences} from '../controllers/user.controller.js';
+import {getRecommendedItems, getRapidFeast, getFoodItem} from '../controllers/food.controller.js';
 
 const router = Router();
 
 
-router.get('/recommendations/:userId', register);
-router.post('/rapid', login);
-router.post('/:userId', preferences);
+router.get('/recommendations/:userId', getRecommendedItems );
+router.get('/rapid', getRapidFeast);
+router.get('/:itemId', getFoodItem);
 
 
 export default router;
