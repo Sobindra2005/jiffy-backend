@@ -43,7 +43,7 @@ export const getRecommendedItems = asyncHandler(async (req, res) => {
 export const getRapidFeast = asyncHandler(async (req, res) => {
   const items = await Item.find().sort({ prepareItem: 1 }).limit(5).populate({
     path: "restaurant",
-    select: "name location",
+    select: "name address",
   });
 
   return res.status(200).json(new ApiResponse(200, items, "Rapid Feast Items"));

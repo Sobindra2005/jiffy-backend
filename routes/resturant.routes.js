@@ -6,7 +6,6 @@ const router = Router();
 
 router.get('/', getAllRestaurant);
 router.get('/get/:resturantId', getRestaurant);
-router.get('/category/:restaurantId', getRestaurantCategories);
 router.get('/items/:restaurantId', getRestaurantItems);
 
 
