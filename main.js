@@ -7,7 +7,9 @@ import { connectMongoDb } from "./db/mongodb.connect.js";
 import userRouter from "./routes/user.routes.js";
 import foodRouter from "./routes/food.routes.js";
 import resturantRouter from "./routes/resturant.routes.js";
+import achievementRouter from "./routes/achievement.routes.js";
 import testRouter from "./routes/test.routes.js";
+
 
 dotenv.config({ path: "./.env" });
 const app = express();
@@ -38,6 +40,8 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/food", foodRouter);
 app.use("/api/v1/resturant", resturantRouter);
 
+
+app.use("/api/v1/achievement", achievementRouter);
 // Start Server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
