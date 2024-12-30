@@ -1,17 +1,13 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: true
-    },
-    lastName: {
+    fullName: {
         type: String,
         required: true
     },
     email: {
         type: String,
-        required: false
+        match: /^\S+@\S+\.\S+$/,
     },
     phoneNumber: {
         type: String,
@@ -21,11 +17,19 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    isPhoneVerified:{
+    isPhoneVerified: {
         type: Boolean,
         default: false
     },
-},{
+    preferences: {
+        type: [String],
+        default: []
+    },
+    achievement:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Achievement'
+    }
+}, {
     timestamps: true
 });
 

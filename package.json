@@ -1,10 +1,11 @@
 {
+
   "name": "jiffy-backend",
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
   "author": "astronix",
-  "type": "commonjs",
+  "type": "module",
   "main": "main.js",
   "scripts": {
     "start": "nodemon main.js"
