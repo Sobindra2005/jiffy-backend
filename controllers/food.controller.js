@@ -42,7 +42,7 @@ export const getRecommendedItems = asyncHandler(async (req, res) => {
 
 export const getRapidFeast = asyncHandler(async(req, res)=>{
 
-    const items = await Item.find().sort({prepareItem: -1}).limit(5)
+    const items = await Item.find().sort({prepareItem: 1}).limit(5)
 
     return res
         .status(200)
