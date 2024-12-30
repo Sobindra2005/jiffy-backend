@@ -42,7 +42,7 @@ export const getRecommendedItems = asyncHandler(async (req, res) => {
 
 export const getRapidFeast = asyncHandler(async(req, res)=>{
 
-    const items = await Item.find().sort({prepareItem: 1}).limit(5)
+    const items = await Item.find().sort({prepareItem: 1}).limit(5).populate('restaurant').lean()
 
     return res
         .status(200)
@@ -66,4 +66,3 @@ export const getFoodItem = asyncHandler(async(req, res)=>{
         .status(200)
         .json(new ApiResponse(200, item, "Food Item"));
 })
-

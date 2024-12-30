@@ -1,5 +1,5 @@
 import Item from "../models/Item.model.js";
-import User from "../models/User.model.js";
+
 import Resturant from "../models/Resturant.model.js";
 
 import { asyncHandler } from "../utils/asyncHandler.js";
@@ -68,7 +68,7 @@ export const getRestaurantCategories = asyncHandler(async (req, res) => {
 
 export const getRestaurantItems = asyncHandler(async (req, res) => {
     const { restaurantId } = req.params;
-    const { category } = req.query; // Optional category filter
+   
 
     if (!restaurantId) {
         throw new ApiError(400, "Restaurant ID is required");

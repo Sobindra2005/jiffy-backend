@@ -27,9 +27,9 @@ const ItemSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
-  restaurant: { // Fixed spelling from 'resturant' to 'restaurant'
+  restaurant: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Restaurant", // Fixed spelling in ref
+    ref: "Restaurant", 
     required: true
   },
   category: {

@@ -21,11 +21,17 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    preferences: {
-        type: [String],
-        default: []
+    categories: {
+        type: [String], 
+        required: true,
+        default: [] 
     },
-    achievement:{
+    cuisines: {
+        type: [String], 
+        required: true,
+        default: [] 
+    },
+    achievement: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Achievement'
     }

@@ -4,41 +4,41 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
 export const register = asyncHandler(async (req, res) => {
-  const { email, password, phone, fullName } = req.body;
 
-  if (!password || !phone || !fullName) {
+  const { email, password, phoneNumber, fullName } = req.body;
+
+  if (!password || !phoneNumber || !fullName) {
     throw new ApiError(400, "Please provide all the details");
   }
 
-  const existedUser = await User.findOne({ phone });
+  const existedUser = await User.findOne({ phoneNumber });
   if (existedUser) {
     throw new ApiError(400, "User already exists");
   }
 
-  const user = await User.create({ email, password, phone, fullName });
-
+  const user = await User.create({ email, password, phoneNumber, fullName });
   return res
     .status(200)
     .json(new ApiResponse(200, user, "User created successfully"));
 });
 
 export const login = asyncHandler(async (req, res) => {
-  const { phone, password } = req.body;
+  const { phoneNumber, password } = req.body;
 
-  if (!phone || !password) {
+  if (!phoneNumber || !password) {
     throw new ApiError(400, "Please provide all the details");
   }
 
-  const user = await User.findOne({ phone });
+  const user = await User.findOne({ phoneNumber });
 
   if (!user) {
     throw new ApiError(404, "User not found");
   }
 
-  const isMatch = await user.matchPassword(password);
+  const isMatch = user.password === password;
 
   if (!isMatch) {
-    throw new ApiError(401, "Invalid credentials");
+   throw new ApiError(401, "Invalid credentials");
   }
 
   return res
